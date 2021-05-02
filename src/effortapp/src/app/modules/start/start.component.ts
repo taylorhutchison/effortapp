@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Room } from 'src/app/models/room';
-import { StoreService } from '../shared/services/store.service';
+import { StoreService } from '../core/services/store.service';
 
 @Component({
   selector: 'app-start',
@@ -22,7 +22,7 @@ export class StartComponent implements OnInit {
 
   createRoom() {
     const roomId = this.guid();
-    this.store.room.next({
+    this.store.setRoom({
       name: this.roomName!,
       id: roomId,
       members: [],
