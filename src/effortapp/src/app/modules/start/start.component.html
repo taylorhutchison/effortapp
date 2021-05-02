@@ -1,0 +1,19 @@
+<h1>Welcome to the Efforting App</h1>
+<p>Select your options and click the Create Room button to start a room that your teammates can join.</p>
+
+<div class="formInput">
+    <label for="name">Room Name (optional)</label>
+    <input type="text" name="name" [(ngModel)]="roomName" />
+</div>
+
+<div class="formInput">
+    <label for="cardType">Card Type</label>
+    <select name="cardType" [(ngModel)]="selectedCards">
+        <option *ngFor="let cardType of cardTypes" [ngValue]="cardType">
+            {{cardType.name}}
+        </option>
+    </select>
+</div>
+<div class="formInput">
+    <button (click)="createRoom()">Create Room</button>
+</div>
