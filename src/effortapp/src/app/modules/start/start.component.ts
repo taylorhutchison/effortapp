@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Room } from 'src/app/models/room';
 import { StoreService } from '../core/services/store.service';
+import { TitleService } from '../core/services/title.service';
 
 @Component({
   selector: 'app-start',
@@ -15,9 +16,10 @@ export class StartComponent implements OnInit {
   selectedCards: any = this.cardTypes[0];
   roomName: string | undefined;
 
-  constructor(private router: Router, private store: StoreService) { }
+  constructor(private router: Router, private store: StoreService, private titleService: TitleService) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Effort App')
   }
 
   createRoom() {
@@ -26,7 +28,7 @@ export class StartComponent implements OnInit {
       name: this.roomName!,
       id: roomId,
       members: [],
-      cards: this.getCards(''),
+      cards: this.getCards(this.selectedCards.value),
       votingRound: 0,
       votingHistory: []
     } as Room);
@@ -46,7 +48,7 @@ export class StartComponent implements OnInit {
 
   private guid(): string {
     const f = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-    return `${f() + f()}-${f()}-${f()}-${f()}-${f() + f() + f()}`;
+    return `${f() + f()}`;
   }
 
 }

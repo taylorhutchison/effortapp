@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { StoreService } from '../../services/store.service';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-header',
@@ -13,8 +14,13 @@ export class HeaderComponent implements OnInit {
 
   user: User | null = null;
 
-  constructor(private store: StoreService) {
+  showSetName: boolean = false;
+
+  title: string | null = null;
+
+  constructor(private store: StoreService, private titleService: TitleService) {
     this.store.getUser().subscribe(next => this.user = next);
+    this.titleService.title.subscribe(next => this.title = next);
   }
 
   ngOnInit() {
@@ -24,6 +30,7 @@ export class HeaderComponent implements OnInit {
     if (this.userName) {
       this.store.setUserName(this.userName);
     }
+    this.showSetName = false;
   }
 
 }

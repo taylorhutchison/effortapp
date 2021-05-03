@@ -33,6 +33,10 @@ export class StoreService {
     this.room.next(room);
   }
 
+  getRoom(): Observable<Room | null> {
+    return from(this.room);
+  }
+
   constructor() {
     if (window.localStorage) {
       this.user.next({

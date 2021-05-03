@@ -1,0 +1,14 @@
+@use "sass:color";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap");
+
+$main: #1aad9a;
+$main-light: color.adjust($main, $lightness: 10%);
+$main-dark: color.adjust($main, $lightness: -10%);
+
+$secondary: #ad3a09;
+$secondary-light: color.adjust($secondary, $lightness: 10%);
+$secondary-dark: color.adjust($secondary, $lightness: -10%);
+
+@mixin font {
+    font-family: "Montserrat", sans-serif;
+}

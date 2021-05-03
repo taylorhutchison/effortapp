@@ -1,9 +1,18 @@
 <header>
+    <h1>{{title}}</h1>
     <nav></nav>
     <div class="name">
-        {{ user?.name }}
-        <input [(ngModel)]="userName">
-        <button (click)="setUserName()">Set Name</button>
+        <span *ngIf="user">
+            {{ user?.name }}
+        </span>
+        <span *ngIf="!user">
+            No Username Set
+        </span>
+        <span class="change" (click)="showSetName = true">(change)</span>
+        <div class="setname" *ngIf="showSetName">
+            <input [(ngModel)]="userName">
+            <button (click)="setUserName()">Set</button>
+            <button (click)="showSetName = false">Cancel</button>
+        </div>
     </div>
-
 </header>
