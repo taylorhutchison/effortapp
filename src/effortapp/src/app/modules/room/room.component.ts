@@ -12,11 +12,14 @@ import { TitleService } from '../core/services/title.service';
 })
 export class RoomComponent implements OnInit {
 
+  message: string = "";
+
   roomId: string | null | undefined;
 
   room: Room | null = null;
 
   private hubUrl: string = "https://delightful-pond-0f7aaaf10.azurestaticapps.net/api";
+  //private hubUrl: string = "http://localhost:7071/api";
 
   constructor(
     private route: ActivatedRoute,
@@ -27,11 +30,16 @@ export class RoomComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.roomId = params.get('roomId');
+      this.signalRService.connect(this.hubUrl);
       this.storeService.getRoom().subscribe(next => {
         this.room = next;
       });
       this.titleService.setTitle(`Effort App Room ${this.roomId}`);
     });
+  }
+
+  send() {
+    this.signalRService.sendMessage(this.message);
   }
 
 }

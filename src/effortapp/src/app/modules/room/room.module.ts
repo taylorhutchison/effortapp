@@ -5,6 +5,7 @@ import { RoomRoutingModule } from './room-routing.module';
 import { RoomComponent } from './room.component';
 import { CardsContainerComponent } from './components/cards-container/cards-container.component';
 import { CardComponent } from './components/card/card.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { CardComponent } from './components/card/card.component';
   ],
   imports: [
     CommonModule,
-    RoomRoutingModule
+    RoomRoutingModule,
+    FormsModule
   ]
 })
 export class RoomModule { }
