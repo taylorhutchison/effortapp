@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Room } from 'src/app/models/room';
+import { SignalrService } from '../core/services/signalr.service';
 import { StoreService } from '../core/services/store.service';
 import { TitleService } from '../core/services/title.service';
 
@@ -15,7 +16,13 @@ export class RoomComponent implements OnInit {
 
   room: Room | null = null;
 
-  constructor(private route: ActivatedRoute, private storeService: StoreService, private titleService: TitleService) { }
+  private hubUrl: string = "https://delightful-pond-0f7aaaf10.azurestaticapps.net/api";
+
+  constructor(
+    private route: ActivatedRoute,
+    private storeService: StoreService,
+    private titleService: TitleService,
+    private signalRService: SignalrService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
